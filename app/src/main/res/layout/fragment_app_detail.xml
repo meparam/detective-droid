@@ -1,8 +1,28 @@
-<ListView
-    android:id="@+id/list"
-    style="?android:attr/textAppearanceLarge"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AppDetailFragment" />
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/txt_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/font_large"
+        android:textStyle="bold"
+        tools:text="Detective Droid" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:orientation="vertical"
+        android:scrollbars="none" />
+
+</LinearLayout>

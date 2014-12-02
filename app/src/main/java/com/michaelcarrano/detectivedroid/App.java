@@ -1,22 +1,28 @@
 package com.michaelcarrano.detectivedroid;
 
-import com.michaelcarrano.detectivedroid.model.Libraries;
-import com.michaelcarrano.detectivedroid.model.Library;
+import android.app.Application;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+import com.michaelcarrano.detectivedroid.models.AppSource;
+import com.michaelcarrano.detectivedroid.models.AppSources;
+import com.michaelcarrano.detectivedroid.models.Libraries;
+import com.michaelcarrano.detectivedroid.models.Library;
+import com.michaelcarrano.detectivedroid.services.DetectIntentService;
+import com.michaelcarrano.detectivedroid.utils.StringUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Application;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by michaelcarrano on 8/30/14.
+ * Created by mcarrano on 11/29/14.
  */
 public class App extends Application {
 
@@ -35,14 +41,27 @@ public class App extends Application {
         try {
             parseLibrariesJson();
         } catch (JSONException e) {
-            Log.i(this.getClass().getSimpleName(), "parseLibrariesJson: " + e.toString());
+            Log.i("App", "parseLibrariesJson: " + e.toString());
         }
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        addDetectiveDroidApp();
+    }
+
+    private void addDetectiveDroidApp() {
+        AppSources.getInstance().getSources().put(getPackageName(), new AppSource(getApplicationInfo(), false));
+        scanInstalledApplication(getApplicationInfo());
+    }
+
+    public void scanInstalledApplication(ApplicationInfo appInfo) {
+        Intent intent = new Intent(this, DetectIntentService.class);
+        intent.putExtra(DetectIntentService.KEY_APPLICATION, appInfo);
+        startService(intent);
     }
 
     private void parseLibrariesJson() throws JSONException {
-        String jsonString = Utils.convertStreamToString(
+        String jsonString = StringUtils.convertStreamToString(
                 getResources().openRawResource(R.raw.libraries));
         JSONArray json = new JSONArray(jsonString);
         Set<Library> libraries = new HashSet<Library>();

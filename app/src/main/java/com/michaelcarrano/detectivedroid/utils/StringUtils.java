@@ -1,4 +1,4 @@
-package com.michaelcarrano.detectivedroid;
+package com.michaelcarrano.detectivedroid.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,9 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Created by michaelcarrano on 8/24/14.
+ * Created by mcarrano on 11/29/14.
  */
-public class Utils {
+public class StringUtils {
 
     public static String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));

@@ -1,7 +1,8 @@
-package com.michaelcarrano.detectivedroid.model;
+package com.michaelcarrano.detectivedroid.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.content.pm.ApplicationInfo;
+
+import java.util.HashMap;
 
 /**
  * Created by michaelcarrano on 8/30/14.
@@ -10,7 +11,7 @@ public class AppSources {
 
     private static AppSources instance;
 
-    private List<AppSource> sources = new ArrayList<AppSource>();
+    private HashMap<String, AppSource> sources = new HashMap<String, AppSource>();
 
     public static AppSources getInstance() {
         if (instance == null) {
@@ -19,11 +20,11 @@ public class AppSources {
         return instance;
     }
 
-    public List<AppSource> getSources() {
+    public HashMap<String, AppSource> getSources() {
         return sources;
     }
 
-    public void setSources(List<AppSource> sources) {
+    public void setSources(HashMap<String, AppSource> sources) {
         this.sources = sources;
     }
 }

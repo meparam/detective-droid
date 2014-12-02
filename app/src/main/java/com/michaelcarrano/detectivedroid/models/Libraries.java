@@ -1,4 +1,4 @@
-package com.michaelcarrano.detectivedroid.model;
+package com.michaelcarrano.detectivedroid.models;
 
 import java.util.HashSet;
 import java.util.Set;

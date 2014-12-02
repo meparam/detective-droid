@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <com.michaelcarrano.detectivedroid.views.SlidingPanel
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fragment_app_list_container"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="@color/gray_light" />
+
+        <FrameLayout
+            android:id="@+id/fragment_app_detail_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/menu_width_closed"
+            android:background="@android:color/white" />
+
+    </com.michaelcarrano.detectivedroid.views.SlidingPanel>
+</LinearLayout>
